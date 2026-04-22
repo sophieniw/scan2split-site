@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan2Split – Support & Privacy</title>
+
+  <style>
+    :root {
+      --bg: #f6fff5;
+      --panel: #ffffff;
+      --ink: #10234f;
+      --muted: #7f7f92;
+      --mint: #7fdc95;
+      --sky: #41b7ff;
+      --pink: #ff6da8;
+      --line: #ebedf4;
+      --shadow: 0 14px 34px rgba(12, 27, 56, 0.08);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top right, rgba(127, 220, 149, 0.18), transparent 45%),
+        radial-gradient(circle at 8% 24%, rgba(65, 183, 255, 0.13), transparent 38%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
+
+    .hero {
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(235, 255, 238, 0.94));
+      border: 1px solid rgba(127, 220, 149, 0.28);
+      border-radius: 34px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      background: radial-gradient(circle, rgba(65, 183, 255, 0.22), transparent 62%);
+      right: -75px;
+      top: -75px;
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-lockup {
+      width: 280px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .mascot {
+      width: 108px;
+      height: 108px;
+      object-fit: contain;
+      flex: 0 0 108px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #577083;
+      font-size: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tagline {
+      margin-top: 14px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tagline strong:nth-child(1) {
+      color: var(--pink);
+    }
+
+    .tagline strong:nth-child(2) {
+      color: var(--sky);
+    }
+
+    .tagline strong:nth-child(3) {
+      color: #39c768;
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0 22px;
+      flex-wrap: wrap;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 20px rgba(12, 27, 56, 0.06);
+    }
+
+    .pill-link span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .pill-link.support span {
+      background: var(--sky);
+    }
+
+    .pill-link.privacy span {
+      background: var(--mint);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: #1c366b;
+      font-size: clamp(26px, 4.3vw, 34px);
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #2a4478;
+      font-size: 19px;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #425d72;
+      margin: 0 0 12px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: #5a6a80;
+      margin-bottom: 4px;
+    }
+
+    ul {
+      color: #4b6174;
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 9px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(189, 226, 196, 0.6);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-top: 16px;
+      scroll-margin-top: 24px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      flex: 0 0 44px;
+    }
+
+    .card-icon.support {
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .card-icon.support img,
+    .card-icon.privacy img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .card-icon.privacy {
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .tip-box {
+      border: 1px dashed #d8e7da;
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-top: 14px;
+      background: #fcfffc;
+    }
+
+    .tip-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #325f46;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    hr {
+      margin: 26px 0;
+      border: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #728395;
+    }
+
+    .footer img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      opacity: 0.84;
+      border-radius: 12px;
+    }
+
+    a {
+      color: #2e88da;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        padding: 20px 14px 40px;
+      }
+
+      .hero,
+      .card {
+        border-radius: 24px;
+        padding: 20px;
+      }
+
+      .hero-top {
+        align-items: flex-start;
+      }
+
+      .mascot {
+        width: 82px;
+        height: 82px;
+        flex-basis: 82px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-top">
+        <img src="assets/font_logo.png" alt="Scan2Split logo" class="logo-lockup">
+        <img src="assets/2_cats.png" alt="Scan2Split mascot" class="mascot">
+      </div>
+      <h1>Support & Privacy</h1>
+      <!-- <div class="tagline">
+        <strong>Scan</strong>
+        <strong>Assign</strong>
+        <strong>Split</strong>
+      </div> -->
+    </section>
+
+    <nav class="quick-links" aria-label="Sections">
+      <a href="#support" class="pill-link support"><span></span>Support</a>
+      <a href="#privacy" class="pill-link privacy"><span></span>Privacy Policy</a>
+    </nav>
+
+    <section class="card" id="support">
+      <div class="card-header">
+        <div class="card-icon support">
+          <img src="assets/support_icon.png" alt="Support icon">
+        </div>
+        <h2>Support</h2>
+      </div>
+      <p class="lead">If you need help with Scan2Split, feel free to reach out.</p>
+
+      <p><strong>Contact:</strong><br>
+      Email: <a href="mailto:scan2split@gmail.com">scan2split@gmail.com</a></p>
+
+      <h3>Common Issues</h3>
+      <ul>
+        <li>Enable camera permissions for receipt scanning</li>
+        <li>Ensure good lighting when capturing receipts</li>
+        <li>Restart the app if scanning is not working</li>
+      </ul>
+
+      <div class="tip-box">
+        <div class="tip-title">Quick Tip</div>
+        <p>For the best results, place receipts on a flat surface and avoid shadows before snapping a photo.</p>
+      </div>
+
+      <p>We typically respond within 1–2 business days.</p>
+    </section>
+
+    <hr>
+
+    <section class="card" id="privacy">
+      <div class="card-header">
+        <div class="card-icon privacy">
+          <img src="assets/privacy_icon.png" alt="Privacy icon">
+        </div>
+        <h2>Privacy Policy</h2>
+      </div>
+      <p><strong>Effective Date:</strong> 4/22/2026</p>
+
+      <h3>Information We Collect</h3>
+      <ul>
+        <li>Receipt images for processing and bill splitting</li>
+        <li>Basic usage data for improving app performance</li>
+      </ul>
+
+      <h3>How We Use Information</h3>
+      <ul>
+        <li>Process receipt data</li>
+        <li>Improve user experience</li>
+        <li>Fix bugs and monitor performance</li>
+      </ul>
+
+      <h3>Data Storage</h3>
+      <p>Data may be stored locally on your device. We do not sell your personal data.</p>
+
+      <h3>Camera Usage</h3>
+      <p>The camera is used only for scanning receipts.</p>
+
+      <h3>Third-Party Services</h3>
+      <p>We may use analytics or crash reporting tools to improve the app.</p>
+
+      <h3>Contact</h3>
+      <p>Email: <a href="mailto:scan2split@gmail.com">scan2split@gmail.com</a></p>
+    </section>
+
+    <div class="footer">
+      <span>© 2026 Scan2Split</span>
+      <img src="assets/thumbs_up.png" alt="Scan2Split thumbs up mascot">
+    </div>
+
+  </div>
+</body>
+</html>
